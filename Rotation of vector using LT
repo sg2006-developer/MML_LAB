@@ -1,0 +1,37 @@
+#MML LAB PROGRAMS
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Define the original points of the triangle
+a = np.array([[0, 0], [1, 0], [1, 1]])
+
+# Define the transformation matrix (rotation)
+theta = np.pi / 4  # 45 degrees in radians
+
+# Rotation matrix (counterclockwise rotation)
+rotation_matrix = np.array([[np.cos(theta), -np.sin(theta)], 
+                            [np.sin(theta), np.cos(theta)]])
+
+# Apply the rotation to the original points
+transformed_points = np.dot(a, rotation_matrix.T)
+
+# Plotting the original and rotated triangles
+plt.figure(figsize=(6, 6))
+
+# Plot the original triangle (in blue)
+plt.plot(np.append(a[:, 0], a[0, 0]), np.append(a[:, 1], a[0, 1]), 'bo-', label='Original Triangle')
+
+# Plot the rotated triangle (in red)
+plt.plot(np.append(transformed_points[:, 0], transformed_points[0, 0]), 
+         np.append(transformed_points[:, 1], transformed_points[0, 1]), 'ro-', label='Rotated Triangle')
+
+# Set the plot attributes
+plt.axis("equal")
+plt.grid(True)
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.title("Triangle Rotation (without Translation)")
+plt.legend()
+
+# Show the plot
+plt.show()
